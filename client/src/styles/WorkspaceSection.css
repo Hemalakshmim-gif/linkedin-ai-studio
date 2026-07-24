@@ -1,0 +1,41 @@
+.workspace-layout{
+
+    display:grid;
+
+    grid-template-columns:1.6fr 1fr;
+
+    gap:30px;
+
+    align-items:start;
+
+    margin-bottom:60px;
+
+}
+
+.workspace-left{
+
+    width:100%;
+
+}
+
+.workspace-right{
+
+    width:100%;
+
+}
+
+@media(max-width:1000px){
+
+.workspace-layout{
+
+    grid-template-columns:1fr;
+
+}
+
+.preview-section{
+
+    position:static;
+
+}
+
+}

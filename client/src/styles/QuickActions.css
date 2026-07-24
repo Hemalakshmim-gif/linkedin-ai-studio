@@ -1,0 +1,257 @@
+/* ==========================================
+   QUICK ACTIONS
+========================================== */
+
+.quick-actions{
+
+    margin-bottom:60px;
+
+}
+
+/* ==========================================
+   SECTION TITLE
+========================================== */
+
+.quick-actions .section-title{
+
+    margin-bottom:30px;
+
+}
+
+.quick-actions .section-title h2{
+
+    font-size:34px;
+
+    font-weight:800;
+
+    color:var(--text-primary);
+
+    margin-bottom:8px;
+
+}
+
+.quick-actions .section-title p{
+
+    color:var(--text-secondary);
+
+    font-size:16px;
+
+}
+
+/* ==========================================
+   GRID
+========================================== */
+
+.quick-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:24px;
+
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.quick-card{
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:24px;
+
+    padding:28px;
+
+    transition:all .35s ease;
+
+    cursor:pointer;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 20px rgba(15,23,42,.04);
+
+}
+
+.quick-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:4px;
+
+    background:var(--gradient);
+
+    transform:scaleX(0);
+
+    transition:.35s;
+
+    transform-origin:left;
+
+}
+
+.quick-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 40px rgba(15,23,42,.10);
+
+    border-color:#C7D2FE;
+
+}
+
+.quick-card:hover::before{
+
+    transform:scaleX(1);
+
+}
+
+/* ==========================================
+   ICON
+========================================== */
+
+.quick-icon{
+
+    width:68px;
+
+    height:68px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-bottom:22px;
+
+    transition:.35s;
+
+}
+
+.quick-card:hover .quick-icon{
+
+    transform:scale(1.08) rotate(5deg);
+
+}
+
+/* ==========================================
+   TITLE
+========================================== */
+
+.quick-card h3{
+
+    font-size:22px;
+
+    color:var(--text-primary);
+
+    margin-bottom:14px;
+
+    font-weight:700;
+
+}
+
+/* ==========================================
+   DESCRIPTION
+========================================== */
+
+.quick-card p{
+
+    color:var(--text-secondary);
+
+    line-height:1.7;
+
+    margin-bottom:26px;
+
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.learn-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    border:none;
+
+    background:none;
+
+    color:var(--primary);
+
+    font-size:15px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    padding:0;
+
+}
+
+.learn-btn svg{
+
+    transition:.3s;
+
+}
+
+.quick-card:hover .learn-btn svg{
+
+    transform:translateX(6px);
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:1100px){
+
+.quick-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:768px){
+
+.quick-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.quick-card{
+
+    padding:24px;
+
+}
+
+.quick-card h3{
+
+    font-size:20px;
+
+}
+
+}

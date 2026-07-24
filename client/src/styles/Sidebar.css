@@ -1,0 +1,103 @@
+/* ==========================================
+   PREMIUM SIDEBAR
+========================================== */
+
+.sidebar{
+
+    position:fixed;
+
+    top:105px;
+
+    left:24px;
+
+    width:82px;
+
+    height:calc(100vh - 115px);
+
+    background:rgba(255,255,255,.85);
+
+    backdrop-filter:blur(16px);
+
+    -webkit-backdrop-filter:blur(16px);
+
+    border:1px solid rgba(226,232,240,.8);
+
+    border-radius:26px;
+
+    box-shadow:var(--shadow-md);
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    padding:24px 0;
+
+}
+
+.sidebar-top{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+}
+
+.sidebar-bottom{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    margin-top:auto;
+
+    padding-bottom:12px;
+}
+
+.sidebar-item{
+
+    width:54px;
+
+    height:54px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:transparent;
+
+    color:var(--text-secondary);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.sidebar-item:hover{
+
+    background:#EEF5FF;
+
+    color:var(--primary);
+
+}
+
+.sidebar-item.active{
+
+    background:var(--gradient);
+
+    color:white;
+
+    box-shadow:0 12px 25px rgba(10,102,194,.28);
+
+}

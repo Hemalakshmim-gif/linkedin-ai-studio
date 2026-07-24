@@ -1,0 +1,23 @@
+.workspace-preview{
+
+    display:grid;
+
+    grid-template-columns:1.8fr 1fr;
+
+    gap:30px;
+
+    align-items:start;
+
+    margin-bottom:40px;
+
+}
+
+@media(max-width:1100px){
+
+.workspace-preview{
+
+    grid-template-columns:1fr;
+
+}
+
+}

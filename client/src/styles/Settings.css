@@ -1,0 +1,129 @@
+.settings-page{
+
+padding: 110px 40px 40px;
+
+display:flex;
+
+justify-content:center;
+
+}
+
+.settings-card{
+
+margin:auto;
+
+max-width: 900px;
+
+width:700px;
+
+margin: 0 auto;
+
+background:white;
+
+padding:35px;
+
+border-radius:24px;
+
+box-shadow:0 15px 40px rgba(0,0,0,.08);
+
+}
+
+.settings-card h1{
+
+margin-bottom:10px;
+
+}
+
+.settings-card p{
+
+color:#64748B;
+
+margin-bottom:35px;
+
+}
+
+.setting-row{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:18px 0;
+
+border-bottom:1px solid #E2E8F0;
+
+}
+
+.setting-group{
+
+margin-top:28px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+.setting-group select{
+
+height:48px;
+
+padding:0 16px;
+
+border-radius:12px;
+
+border:1px solid #CBD5E1;
+
+font-size:15px;
+
+}
+
+/* ==========================
+   SETTINGS BUTTONS
+========================== */
+
+.settings-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 35px;
+}
+
+.save-btn,
+.reset-btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* Save Button */
+
+.save-btn {
+  background: linear-gradient(135deg, #0A66C2, #4F46E5);
+  color: white;
+}
+
+.save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(10, 102, 194, 0.35);
+}
+
+/* Reset Button */
+
+.reset-btn {
+  background: #475569;
+  color: white;
+}
+
+.reset-btn:hover {
+  background: #334155;
+  transform: translateY(-2px);
+}

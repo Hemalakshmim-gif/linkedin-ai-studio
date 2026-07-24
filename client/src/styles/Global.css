@@ -1,0 +1,214 @@
+/* ==========================
+   GOOGLE FONT
+========================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+/* ==========================
+   ROOT VARIABLES
+========================== */
+
+:root {
+
+  /* Brand */
+
+  --primary: #0A66C2;
+  --secondary: #4F46E5;
+
+  /* Background */
+
+  --background: #F8FAFC;
+  --card: #FFFFFF;
+
+  /* Text */
+
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+
+  /* Border */
+
+  --border: #E2E8F0;
+
+  /* Radius */
+
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  /* Shadow */
+
+  --shadow:
+      0 10px 30px rgba(15,23,42,.08);
+
+  /* Navbar */
+
+  --navbar-height: 90px;
+
+  /* Sidebar */
+
+  --sidebar-width: 120px;
+
+}
+
+/* ==========================
+   RESET
+========================== */
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:"Inter",sans-serif;
+
+    background:var(--background);
+
+    color:var(--text-primary);
+
+}
+
+button{
+
+    font-family:inherit;
+
+}
+
+a{
+
+    text-decoration:none;
+
+}
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}
+
+/* ==========================
+   DARK MODE
+========================== */
+
+html.dark,
+html.dark body {
+  background: #0f172a;
+  color: #f8fafc;
+  transition: all 0.35s ease;
+}
+
+/* Navbar */
+
+html.dark .navbar {
+  background: #1e293b;
+  color: white;
+}
+
+html.dark .navbar input{
+    background:#334155;
+    color:white;
+}
+
+html.dark .theme-btn,
+html.dark .notification-btn,
+html.dark .profile-btn{
+    background:#334155;
+}
+
+/* Sidebar */
+
+html.dark .sidebar {
+  background: #1e293b;
+  color: white;
+}
+
+/* Cards */
+
+html.dark .workspace-card,
+html.dark .preview-card,
+html.dark .history-card,
+html.dark .profile-card,
+html.dark .settings-card,
+html.dark .about-card,
+html.dark .about-section,
+html.dark .template-card,
+html.dark .stat-card,
+html.dark .overview-card,
+html.dark .profile-section {
+  background: #1e293b;
+  color: white;
+}
+
+/* Inputs */
+
+html.dark input,
+html.dark textarea,
+html.dark select {
+  background: #334155;
+  color: white;
+  border: 1px solid #475569;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #cbd5e1;
+}
+
+html.dark input::placeholder {
+  color: #94A3B8;
+}
+
+/* Buttons */
+
+html.dark button {
+  color: white;
+}
+
+/* Skills */
+
+html.dark .skill-chip {
+  background: #334155;
+  color: white;
+}
+
+/* Text */
+
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+  color: white;
+}
+
+html.dark p,
+html.dark span,
+html.dark label {
+  color: #cbd5e1;
+}
+
+/* Links */
+
+html.dark a {
+  color: #60a5fa;
+}
+
+/* Toast */
+
+html.dark .Toastify__toast {
+  background: #1e293b;
+  color: white;
+}

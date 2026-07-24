@@ -1,0 +1,123 @@
+/* ==========================================
+   AI WORKSPACE
+========================================== */
+
+.workspace{
+
+    margin-bottom:0px;
+
+}
+
+.workspace-card{
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:28px;
+
+    padding:35px;
+
+    box-shadow:0 10px 30px rgba(15,23,42,.05);
+
+}
+
+.input-group{
+
+    margin-bottom:26px;
+
+}
+
+.input-group label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-weight:700;
+
+    color:var(--text-primary);
+
+    margin-bottom:12px;
+
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select{
+
+    width:100%;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:16px 18px;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.3s;
+
+    background:#FCFCFD;
+
+}
+
+.input-group textarea{
+
+    resize:vertical;
+
+    min-height:140px;
+
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(10,102,194,.10);
+
+}
+
+.generate-btn{
+
+    width:100%;
+
+    border:none;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    color:white;
+
+    background:var(--gradient);
+
+    transition:.35s;
+
+}
+
+.generate-btn:hover{
+
+    box-shadow:0 20px 40px rgba(10,102,194,.25);
+
+}
