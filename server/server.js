@@ -11,5 +11,5 @@ app.use(
 );
 app.use("/api/auth", authRoutes);
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on https://linkedin-ai-studio-db.onrender.com`);
 });

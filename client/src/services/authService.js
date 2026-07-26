@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:5000/api/auth";
+const API = "https://linkedin-ai-studio-db.onrender.com/api/dashboard";
 
 // ======================
 // Register
