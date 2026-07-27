@@ -5,12 +5,12 @@ import generateToken from "../utils/generateToken.js";
 import {
   findUserByEmail,
   createUser,
+  updateUserProfile,
 } from "../services/authService.js";
 
 // ===============================
 // Register User
 // ===============================
-
 export const registerUser = async (req, res) => {
   try {
     const { fullName, email, password } = req.body;
@@ -47,6 +47,9 @@ export const registerUser = async (req, res) => {
         id: userId,
         fullName,
         email,
+        github: "",
+        linkedin: "",
+        college: "",
       },
     });
 
@@ -65,7 +68,6 @@ export const registerUser = async (req, res) => {
 // ===============================
 // Login User
 // ===============================
-
 export const loginUser = async (req, res) => {
   try {
 
@@ -103,6 +105,40 @@ export const loginUser = async (req, res) => {
         linkedin: user.linkedin,
         college: user.college,
       },
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
+
+  }
+};
+
+// ===============================
+// Update Profile
+// ===============================
+export const updateProfile = async (req, res) => {
+  try {
+
+    const { fullName, college, github, linkedin } = req.body;
+
+    const updatedUser = await updateUserProfile(
+      req.user.id,
+      fullName,
+      college,
+      github,
+      linkedin
+    );
+
+    res.json({
+      success: true,
+      message: "Profile updated successfully.",
+      user: updatedUser,
     });
 
   } catch (error) {

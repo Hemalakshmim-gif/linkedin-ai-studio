@@ -2,7 +2,12 @@ import "../styles/DashboardHeader.css";
 import { motion } from "framer-motion";
 import { Sparkles, Zap, Briefcase } from "lucide-react";
 
+import useAuth from "../hooks/useAuth";
+
 function DashboardHeader() {
+
+  const { user } = useAuth();
+
   const hour = new Date().getHours();
 
   let greeting = "Good Evening 🌙";
@@ -13,7 +18,7 @@ function DashboardHeader() {
     greeting = "Good Afternoon ☀️";
   }
 
-  const userName = "Hema";
+  const userName = user?.fullName || "User";
 
   return (
     <motion.section

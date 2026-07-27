@@ -1,6 +1,8 @@
 import pool from "../config/db.js";
 
-// Find user by email
+// ===============================
+// Find User By Email
+// ===============================
 export const findUserByEmail = async (email) => {
   const [rows] = await pool.execute(
     "SELECT * FROM users WHERE email = ?",
@@ -10,7 +12,9 @@ export const findUserByEmail = async (email) => {
   return rows[0];
 };
 
-// Create new user
+// ===============================
+// Create New User
+// ===============================
 export const createUser = async (
   fullName,
   email,
@@ -31,12 +35,53 @@ export const createUser = async (
   return result.insertId;
 };
 
-// Find user by ID
+// ===============================
+// Find User By ID
+// ===============================
 export const findUserById = async (id) => {
   const [rows] = await pool.execute(
-    "SELECT id, fullName, email, github, linkedin, college FROM users WHERE id = ?",
+    `SELECT
+      id,
+      fullName,
+      email,
+      github,
+      linkedin,
+      college,
+      createdAt
+     FROM users
+     WHERE id = ?`,
     [id]
   );
 
   return rows[0];
+};
+
+// ===============================
+// Update User Profile
+// ===============================
+export const updateUserProfile = async (
+  id,
+  fullName,
+  college,
+  github,
+  linkedin
+) => {
+  await pool.execute(
+    `UPDATE users
+     SET
+       fullName = ?,
+       college = ?,
+       github = ?,
+       linkedin = ?
+     WHERE id = ?`,
+    [
+      fullName,
+      college,
+      github,
+      linkedin,
+      id,
+    ]
+  );
+
+  return await findUserById(id);
 };

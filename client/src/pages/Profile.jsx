@@ -1,323 +1,239 @@
 import "../styles/Profile.css";
 
-import {
-  Mail,
-  GraduationCap,
-  Award,
-  Code2,
-  FolderGit2,
-  Sparkles,
-  ExternalLink,
-  MapPin,
-  Briefcase,
-  LogOut,
-} from "lucide-react";
-
-import {
-  FaGithub,
-  FaLinkedin,
-} from "react-icons/fa";
-
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import api from "../services/api";
 import useAuth from "../hooks/useAuth";
 
-function Profile() {
+import {
+  Mail,
+  GraduationCap,
+  Github,
+  Linkedin,
+  User,
+  LogOut,
+  Save,
+  Pencil,
+} from "lucide-react";
 
+export default function Profile() {
   const navigate = useNavigate();
+  const { user, logout, updateUser } = useAuth();
 
-  const { user, logout } = useAuth();
+  const [editing, setEditing] = useState(false);
+  const [saving, setSaving] = useState(false);
 
-  const handleLogout = () => {
+  const emptyForm = {
+  fullName: "",
+  email: "",
+  college: "",
+  github: "",
+  linkedin: "",
+};
 
-    logout();
+const [formData, setFormData] = useState(() =>
+  user
+    ? {
+        fullName: user.fullName || "",
+        email: user.email || "",
+        college: user.college || "",
+        github: user.github || "",
+        linkedin: user.linkedin || "",
+      }
+    : emptyForm
+);
 
-    toast.success("Logged out successfully!");
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-    navigate("/login");
-
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const skills = [
-    "React",
-    "Express.js",
-    "Node.js",
-    "MySQL",
-    "JavaScript",
-    "Gemini AI",
-    "HTML",
-    "CSS",
-    "Git",
-    "REST API",
-  ];
+  const handleSave = async () => {
+    try {
+      setSaving(true);
 
-  const achievements = [
-    "🥇 First Place - Code Cracking Symposium",
-    "🤖 Built LinkedIn AI Studio",
-    "📚 Learning Microsoft AI for Beginners",
-    "💻 Passionate Full Stack Developer",
-  ];
+      const { data } = await api.put("/auth/profile", {
+        fullName: formData.fullName,
+        college: formData.college,
+        github: formData.github,
+        linkedin: formData.linkedin,
+      });
+
+      if (data?.user) {
+        updateUser(data.user);
+
+        setFormData({
+          fullName: data.user.fullName || "",
+          email: data.user.email || "",
+          college: data.user.college || "",
+          github: data.user.github || "",
+          linkedin: data.user.linkedin || "",
+        });
+      }
+
+      toast.success(data?.message || "Profile updated successfully");
+      setEditing(false);
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message || "Failed to update profile"
+      );
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleCancel = () => {
+    setFormData({
+      fullName: user?.fullName || "",
+      email: user?.email || "",
+      college: user?.college || "",
+      github: user?.github || "",
+      linkedin: user?.linkedin || "",
+    });
+
+    setEditing(false);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
-
     <div className="profile-page">
-
-      {/* ===========================
-            PROFILE HEADER
-      =========================== */}
-
       <div className="profile-card">
-
-        <div className="profile-left">
-
+        <div className="profile-header">
           <div className="profile-avatar">
-
-            {user?.fullName
-              ? user.fullName.substring(0,2).toUpperCase()
-              : "HM"}
-
-            <span className="status-dot"></span>
-
+            <User size={48} />
           </div>
 
-        </div>
-
-        <div className="profile-info">
-
-          <h1>
-
-            {user?.fullName || "Hema"}
-
-          </h1>
-
-          <p>
-
-            Computer Science Engineering Student
-
-          </p>
-
-          <span>
-
-            Sri Venkateshwara College of Engineering
-
-          </span>
-
-          <div className="profile-meta">
-
-            <span>
-
-              <MapPin size={16}/>
-
-              Bangalore, India
-
-            </span>
-
-            <span>
-
-              <Briefcase size={16}/>
-
-              Full Stack Developer
-
-            </span>
-
+          <div className="profile-title">
+            <h2>{formData.fullName || "User"}</h2>
+            <p>{formData.email}</p>
           </div>
 
-          <h4 className="profile-role">
-
-            🚀 AI Enthusiast • React Developer • Backend Learner
-
-          </h4>
-
-          <div className="availability">
-
-            <span className="green-dot"></span>
-
-            Available for Internship
-
-          </div>
-
-          <div className="profile-links">
-
-            <a
-              href="https://github.com/Hemalakshmim-gif"
-              target="_blank"
-              rel="noreferrer"
+          {!editing ? (
+            <button
+              className="edit-btn"
+              onClick={() => setEditing(true)}
             >
+              <Pencil size={18} />
+              Edit Profile
+            </button>
+          ) : (
+            <div className="profile-actions">
+              <button
+                className="save-btn"
+                onClick={handleSave}
+                disabled={saving}
+              >
+                <Save size={18} />
+                {saving ? "Saving..." : "Save"}
+              </button>
 
-              <FaGithub size={20}/>
-
-              GitHub
-
-              <ExternalLink size={16}/>
-
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/hemalakshmi-m-6371b432b/"
-              target="_blank"
-              rel="noreferrer"
-            >
-
-              <FaLinkedin size={20}/>
-
-              LinkedIn
-
-              <ExternalLink size={16}/>
-
-            </a>
-
-            <a
-              href="mailto:hemalakshmimuddu@gmail.com"
-            >
-
-              <Mail size={18}/>
-
-              Contact
-
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      {/* ===========================
-            OVERVIEW
-      =========================== */}
-
-      <div className="overview-grid">
-
-        <div className="overview-card">
-
-          <FolderGit2 size={30}/>
-
-          <h2>12</h2>
-
-          <p>AI Posts</p>
-
-        </div>
-
-        <div className="overview-card">
-
-          <Sparkles size={30}/>
-
-          <h2>5</h2>
-
-          <p>Projects</p>
-
-        </div>
-
-        <div className="overview-card">
-
-          <Award size={30}/>
-
-          <h2>1st</h2>
-
-          <p>Achievement</p>
-
-        </div>
-
-        <div className="overview-card">
-
-          <GraduationCap size={30}/>
-
-          <h2>8.5</h2>
-
-          <p>CGPA</p>
-
-        </div>
-
-      </div>
-
-      {/* ===========================
-            SKILLS
-      =========================== */}
-
-      <div className="profile-section">
-
-        <h2>
-
-          <Code2 size={22}/>
-
-          Technical Skills
-
-        </h2>
-
-        <div className="skills-grid">
-
-          {skills.map((skill)=>(
-
-            <span
-              key={skill}
-              className="skill-chip"
-            >
-
-              {skill}
-
-            </span>
-
-          ))}
-
-        </div>
-
-      </div>
-
-      {/* ===========================
-            ACHIEVEMENTS
-      =========================== */}
-
-      <div className="profile-section">
-
-        <h2>
-
-          🏆 Achievements
-
-        </h2>
-
-        <div className="achievement-list">
-
-          {achievements.map((item,index)=>(
-
-            <div
-              key={index}
-              className="achievement-item"
-            >
-
-              {item}
-
+              <button
+                className="cancel-btn"
+                onClick={handleCancel}
+                disabled={saving}
+              >
+                Cancel
+              </button>
             </div>
-
-          ))}
-
+          )}
         </div>
 
+        <div className="profile-body">
+          <div className="profile-field">
+            <label>
+              <User size={18} />
+              Full Name
+            </label>
+
+            <input
+              type="text"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleChange}
+              disabled={!editing}
+            />
+          </div>
+
+          <div className="profile-field">
+            <label>
+              <Mail size={18} />
+              Email
+            </label>
+
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              readOnly
+              disabled
+            />
+          </div>
+
+          <div className="profile-field">
+            <label>
+              <GraduationCap size={18} />
+              College
+            </label>
+
+            <input
+              type="text"
+              name="college"
+              value={formData.college}
+              onChange={handleChange}
+              disabled={!editing}
+            />
+          </div>
+
+          <div className="profile-field">
+            <label>
+              <Github size={18} />
+              GitHub
+            </label>
+
+            <input
+              type="text"
+              name="github"
+              value={formData.github}
+              onChange={handleChange}
+              disabled={!editing}
+              placeholder="https://github.com/username"
+            />
+          </div>
+
+          <div className="profile-field">
+            <label>
+              <Linkedin size={18} />
+              LinkedIn
+            </label>
+
+            <input
+              type="text"
+              name="linkedin"
+              value={formData.linkedin}
+              onChange={handleChange}
+              disabled={!editing}
+              placeholder="https://linkedin.com/in/username"
+            />
+          </div>
+        </div>
+
+        <div className="profile-footer">
+          <button className="logout-btn" onClick={handleLogout}>
+            <LogOut size={18} />
+            Logout
+          </button>
+        </div>
       </div>
-
-      {/* ===========================
-            LOGOUT
-      =========================== */}
-
-      <div className="profile-section">
-
-        <button
-          className="logout-btn"
-          onClick={handleLogout}
-        >
-
-          <LogOut size={20}/>
-
-          Logout
-
-        </button>
-
-      </div>
-
     </div>
-
   );
-
 }
-
-export default Profile;
