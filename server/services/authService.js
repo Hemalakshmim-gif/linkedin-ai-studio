@@ -44,9 +44,14 @@ export const findUserById = async (id) => {
       id,
       fullName,
       email,
+      college,
+      degree,
+      graduationYear,
+      cgpa,
+      skills,
       github,
       linkedin,
-      college,
+      bio,
       createdAt
      FROM users
      WHERE id = ?`,
@@ -63,22 +68,38 @@ export const updateUserProfile = async (
   id,
   fullName,
   college,
+  degree,
+  graduationYear,
+  cgpa,
+  skills,
   github,
-  linkedin
+  linkedin,
+  bio
 ) => {
+
   await pool.execute(
     `UPDATE users
      SET
        fullName = ?,
        college = ?,
+       degree = ?,
+       graduationYear = ?,
+       cgpa = ?,
+       skills = ?,
        github = ?,
-       linkedin = ?
+       linkedin = ?,
+       bio = ?
      WHERE id = ?`,
     [
       fullName,
       college,
+      degree,
+      graduationYear,
+      cgpa,
+      skills,
       github,
       linkedin,
+      bio,
       id,
     ]
   );

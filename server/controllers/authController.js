@@ -47,9 +47,14 @@ export const registerUser = async (req, res) => {
         id: userId,
         fullName,
         email,
+        college: "",
+        degree: "",
+        graduationYear: "",
+        cgpa: "",
+        skills: "",
         github: "",
         linkedin: "",
-        college: "",
+        bio: "",
       },
     });
 
@@ -101,9 +106,14 @@ export const loginUser = async (req, res) => {
         id: user.id,
         fullName: user.fullName,
         email: user.email,
+        college: user.college,
+        degree: user.degree,
+        graduationYear: user.graduationYear,
+        cgpa: user.cgpa,
+        skills: user.skills,
         github: user.github,
         linkedin: user.linkedin,
-        college: user.college,
+        bio: user.bio,
       },
     });
 
@@ -125,14 +135,29 @@ export const loginUser = async (req, res) => {
 export const updateProfile = async (req, res) => {
   try {
 
-    const { fullName, college, github, linkedin } = req.body;
+    const {
+      fullName,
+      college,
+      degree,
+      graduationYear,
+      cgpa,
+      skills,
+      github,
+      linkedin,
+      bio,
+    } = req.body;
 
     const updatedUser = await updateUserProfile(
       req.user.id,
       fullName,
       college,
+      degree,
+      graduationYear,
+      cgpa,
+      skills,
       github,
-      linkedin
+      linkedin,
+      bio
     );
 
     res.json({
