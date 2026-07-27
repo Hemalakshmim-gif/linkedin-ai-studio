@@ -10,8 +10,8 @@ import useAuth from "../hooks/useAuth";
 import {
   Mail,
   GraduationCap,
-  Github,
-  Linkedin,
+  FolderGit2,
+  Globe,
   User,
   LogOut,
   Save,
@@ -196,7 +196,7 @@ const [formData, setFormData] = useState(() =>
 
           <div className="profile-field">
             <label>
-              <Github size={18} />
+              <FolderGit2 size={18} />
               GitHub
             </label>
 
@@ -212,7 +212,7 @@ const [formData, setFormData] = useState(() =>
 
           <div className="profile-field">
             <label>
-              <Linkedin size={18} />
+              <Globe size={18} />
               LinkedIn
             </label>
 
